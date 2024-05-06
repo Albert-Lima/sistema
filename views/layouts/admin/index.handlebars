@@ -1,0 +1,407 @@
+<header class="header_config">
+    <button class="button_nav_header selected_nav_header">Painel Administrador</button>
+    <button class="button_nav_header">Usuários</button>
+    <button class="button_nav_header">Orçamento</button>
+</header>
+<div style="margin-top: 30px; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    {{>msg_req}}
+</div>
+<main class="painel">
+    <section class="painel_adm">
+        <div class="title_procedimentos">
+            <span>Procedimentos</span>
+            <span>Valores</span>
+        </div>
+        <section class="container_procedimentos">
+            {{#each procedimentos}}
+                <section class="box_procedimentos">
+                    <span class="nome_procedimento">{{nomeProcedimento}}</span>
+                    <div class="conatainer_saved_values">
+                        <span>à vista</span>
+                        <div>{{aVista}} <span style="width: 5px"></span> R$</div>
+                    </div>
+                    <div class="conatainer_saved_values2">
+                        <span>parcelado</span>
+                        <div>{{parcelado}} <span style="width: 5px"></span> R$</div>
+                    </div>
+                    <button class="btt_open_abaEdit"><img src="imagens/icons8-editar-48.png" alt="editar"></button>
+                </section>
+                <section class="poupup_editProcedimento">
+                    <button class="close_EditProced">fechar</button>
+                    <form action="/" method="post" id="formEditDelete" class="formEditProced">
+                        <input type="hidden" name="id" value="{{_id}}">
+                        <header>
+                            <span>editar</span>
+                            <button class="btt_openMenuEdit"><img src="imagens/icons8-menu-2-50.png" alt="abrir menu"></button>
+                            <div class="menu_edit">
+                                <button class="btt_closeMenuEdit"><img src="imagens/icons8-excluir-60.png" alt=""></button>
+
+                                <button type="submit" class="btt_comand_edit" name="action" value="edit">salvar <img src="imagens/icons8-salvar-50.png" alt="salvar"></button>
+                                <button button type="submit" class="btt_comand_edit" name="action" value="delete">deletar <img src="imagens/icons8-remover-60.png" alt="excluir"></button>
+                            </div>
+                        </header>
+                        <input type="text" name="nomeProcedimento" class="input_text_procedimento" value="{{nomeProcedimento}}" required>
+                        <div style="display: flex; flex-direction: row; align-items: start; justify-content: center; gap: 50px ;margin-top: 40px;">
+                            <div>
+                                <span class="option_value">à vista</span>
+                                <div>
+                                    <input type="text" name="aVista" required class="input_value_proced" value="{{aVista}}">
+                                    R$
+                                </div>
+                            </div>
+                            <div>
+                                <span class="option_value">parcelado</span>
+                                <div>
+                                    <input type="text" name="parcelado" required class="input_value_proced" value="{{parcelado}}">
+                                    R$
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            {{/each}}
+        </section>
+        <div class="container_btt_procedimentos">
+            <button class="button_open_procedimentos" id="OpenAbaProcedimentos"><img src="imagens/icons8-adicionar-50.png" alt=""></button>
+        </div>
+    </section>
+
+    <section class="painel_users">
+        <div class="title_global">
+            <span>Usuários</span>
+        </div>
+        <section class="container_users">
+            {{#each usuarios}}
+                <section class="box_user">
+                    <div>{{nome}}</div>
+                    <span style="opacity: 0;" class="verifyAdmin">{{eAdmin}}</span>
+                    <button class="info_user"><img src="imagens/icons8-informações-48.png" alt="informações de usuário"></button>
+                </section>
+
+                <section class="container_form_users">
+                    <form action="/turnuser" method="post" class="form_users">
+                    <input type="hidden" name="id" value="{{_id}}">
+                        <header>
+                            <button class="bttCloseInfoUsers">fechar</button><!--deve fazer o inverso do botão com classe "info-user"-->
+                        </header>
+                        <div class="show_data_user">
+                            <div class="box_show_data">
+                                <span class="span_nome">Nome</span>
+                                <span class="span_data">{{nome}}</span>
+                            </div>
+                            <div class="box_show_data">
+                                <span class="span_nome">Email</span>
+                                <span class="span_data">{{email}}</span>
+                            </div>
+                        </div>
+                        <div class="container_turn_admin_delete">
+                            <button type="subimit" class="turn_admin_link">Tornar admin</button>
+                            <button type="button" class="button_open_poup_up_delete">deletar <img src="imagens/icons8-remover-60.png" alt="deletar usuário"></button> 
+                        </div>
+                    </form>
+                </section>
+                <section class="confirm_delete">
+                    <form action="/deleteuser" method="post" class="poupUp_confirm">
+                        <span class="title_form_confirmDelete">Tem certeza?</span>
+                        <span class="desc_form_confirmDelete">o usuário será deletado do sistema</span>
+                        <div>
+                            <input type="hidden" name="id" value="{{_id}}">
+                            <input type="hidden" name="nome" value="{{nome}}">
+                            <button type="button" class="close_poupUp_confirm">cancelar</button>
+                            <button type="submit" class="confirm_delete_button" value="delete">confirmar</button>
+                        </div>
+                    </form>
+                </section>
+
+            {{/each}}
+            <div class="container_btt_procedimentos">
+                <a class="redirect_to_cadastro" href="/cadastro"><img src="imagens/icons8-adicionar-50.png" alt=""></a>
+            </div>
+        </section>
+    </section>
+
+    <section class="painel_orc">
+        <section class="container_form_orc">
+            <input type="text" name="nomePaciente" placeholder="nome do paciente" class="input_form_orc">
+            <div class="container_list_system">
+                <span>adicionar ou remover procedimentos</span>
+                <button type="button" id="seeList"><img class="seeListImg" src="imagens/icons8-seta-para-recolher-48.png" alt="mostrar ou recolher itens"></button>
+            </div>
+            <ul id="listaItens">
+                {{#each procedimentos}}
+                    <form>
+                        <input type="checkbox" value="{{_id}}">
+                        <label for="item1" class="labelSelectProcedimentos">{{nomeProcedimento}}</label>
+                        <input type="hidden" name="aVista" value="{{aVista}}">
+                        <input type="hidden" name="parcelado" value="{{parcelado}}">
+                        <input type="number" name="quantidade" id="" value="1" class="quantBoxSelect">
+                        <select name="decisão" id="" class="inputSelect">
+                            <option value="true">certeza</option>
+                            <option value="false">dúvida</option>
+                        </select>
+                    </form>
+                {{else}}
+                    <li>ainda não existe nenhum procedimento</li>
+                {{/each}}
+                    <button id="atualizarSeleção" class="buttonUpdate">atualizar</button>
+            </ul>
+            <hr style="margin-top: 50px; margin-bottom: 50px; width: 90%;">
+            <h2 class="answer_present">Deseja dar algum brinde?</h2>
+            <form class="checagem_present">
+                <div>
+                    <input type="radio" name="opcao" id="yPresent" checked> <label for="yPresent">sim</label>
+                </div>
+                <div>
+                    <input type="radio" name="opcao" id="nPresent"> <label for="nPresent">nao</label>
+                </div>
+            </form>
+            <section class="section_select_present">
+                <div class="container_list_systemPresent">
+                    <span>selecione o presente</span>
+                    <button type="button" id="seeListPresent"><img class="seeListPresentImg" src="imagens/icons8-seta-para-recolher-48.png" alt="mostrar ou recolher itens"></button>
+                </div>
+                <ul id="listaItensPresent">
+                    {{#each procedimentos}}
+                        <form>
+                            <input type="checkbox" value="{{_id}}">
+                            <label for="item1" class="labelSelectProcedimentos">{{nomeProcedimento}}</label>
+                            <input type="hidden" name="aVista" value="{{aVista}}">
+                            <input type="hidden" name="parcelado" value="{{parcelado}}">
+                        </form>
+                    {{else}}
+                        <li>ainda não existe nenhum procedimento</li>
+                    {{/each}}
+
+                    <button id="atualizarSeleçãoPresent" class="buttonUpdate">atualizar</button>
+                </ul>
+            </section>
+            <hr style="margin: auto; margin-top: 50px; margin-bottom: 20px; width: 90%;">
+        </section>
+        <section class="confirme_valores">
+            <h2>confirme os valores</h2>
+            <div class="box_pre_pdf">
+                <div class="present_pre_see">
+                </div>
+                <div class="total_pre_see">
+                </div>
+                <div class="dobout_pre_see">
+                </div>
+            </div>
+            <button class="bttSendPDF">confirmar</button>
+        </section>
+    </section>
+</main>
+<section class="poupup_addProcedimneto">
+    <button class="close_addProced">fechar</button>
+    <form action="/novoprocedimento" method="post">
+        <input type="text" name="nomeProcedimento" class="input_text_procedimento" placeholder="nome do procedimento" required>
+        <div class="container_input_valores">
+            <div>
+                <span class="option_value">à vista</span>
+                <div>
+                    <input type="text" class="input_value_proced" name="aVista" placeholder="00,00" required>
+                    R$
+                </div>
+            </div>
+            <div>
+                <span class="option_value">parcelado</span>
+                <div>
+                    <input type="text" class="input_value_proced" name="parcelado" placeholder="00,00" required>
+                    R$
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btt_comand">salvar <img src="imagens/icons8-salvar-50.png" alt="salvar"></a>
+    </form>
+</section>
+
+<script>
+    //transçao de seções do painel
+var buttonHeader = document.querySelectorAll(".button_nav_header")
+var painelAdmin = document.querySelector(".painel_adm")
+var painelUsers = document.querySelector(".painel_users")
+var painelOrc = document.querySelector(".painel_orc")
+var abaNavMain = document.querySelector(".painel")
+
+function PainelAdmin(){
+    buttonHeader[0].classList.add("selected_nav_header")
+    buttonHeader[1].classList.remove("selected_nav_header")
+    buttonHeader[2].classList.remove("selected_nav_header")
+
+    abaNavMain.style.transform = "translateX(0%)"
+    abaNavMain.style.transition = "0.5s"
+}
+buttonHeader[0].addEventListener("click", PainelAdmin)
+
+function PainelUsers(){
+    buttonHeader[1].classList.add("selected_nav_header")
+    buttonHeader[0].classList.remove("selected_nav_header")
+    buttonHeader[2].classList.remove("selected_nav_header")
+
+    abaNavMain.style.transform = "translateX(calc(-100% / 3))"
+    abaNavMain.style.transition = "0.5s"
+}
+buttonHeader[1].addEventListener("click", PainelUsers)
+
+function PainelOrc(){
+    buttonHeader[2].classList.add("selected_nav_header")
+    buttonHeader[0].classList.remove("selected_nav_header")
+    buttonHeader[1].classList.remove("selected_nav_header")
+
+    abaNavMain.style.transform = "translateX(calc(-100%/3 - 100%/3))"
+    abaNavMain.style.transition = "0.5s"
+}
+buttonHeader[2].addEventListener("click", PainelOrc)
+
+//abrir aba procedimentos
+var buttonOpenAddProced = document.querySelector("#OpenAbaProcedimentos")
+var buttonCloseAddProced = document.querySelector(".close_addProced")
+var AbaAddProced = document.querySelector(".poupup_addProcedimneto")
+
+function OpenAbaAddProced(){
+    AbaAddProced.style.display = "flex"
+    AbaAddProced.style.flexDirection = "column"
+    AbaAddProced.style.alignItems = "center"
+    AbaAddProced.style.justifyContent = "center"
+}
+buttonOpenAddProced.addEventListener("click", OpenAbaAddProced)
+
+function CloseAbaAddProced(){
+    AbaAddProced.style.display = "none"
+}
+buttonCloseAddProced.addEventListener("click", CloseAbaAddProced)
+
+//animações do menu edit
+var openPoupUpEdit = document.querySelectorAll(".btt_open_abaEdit");
+var closePoupUpEdit = document.querySelectorAll(".close_EditProced");
+var poupUpEdit = document.querySelectorAll(".poupup_editProcedimento");
+
+openPoupUpEdit.forEach((btt, i) => {
+    btt.addEventListener("click", () => {
+        poupUpEdit[i].style.display = "flex";
+    });
+});
+
+closePoupUpEdit.forEach((btt, i) => {
+    btt.addEventListener("click", () => {
+        poupUpEdit[i].style.display = "none";
+    });
+});
+
+document.querySelectorAll(".formEditProced").forEach((form, i) => {
+    form.addEventListener("submit", function(event) {
+        var actionButton = event.submitter.value; // Obtém o valor do botão clicado
+
+        if (actionButton === 'edit' || actionButton === 'delete') {
+            // Redireciona para a rota correspondente apenas se o botão clicado for "Salvar" ou "Deletar"
+            if (actionButton === 'edit') {
+                this.action = '/edit'; // Redireciona para a rota de edição
+            } else if (actionButton === 'delete') {
+                this.action = '/deleteproced'; // Redireciona para a rota de deleção
+            }
+        } else {
+            event.preventDefault(); // Previne o envio do formulário se outro botão for clicado
+        }
+    });
+});
+
+
+var bttOpenMenuEdit = document.querySelectorAll(".btt_openMenuEdit");
+var bttCloseMenuEdit = document.querySelectorAll(".btt_closeMenuEdit");
+var bttComandEdit = document.querySelectorAll(".btt_comand_edit");
+var menuEdit = document.querySelectorAll(".menu_edit");
+
+bttOpenMenuEdit.forEach((button, i) => {
+    button.addEventListener("click", function() {
+        this.style.opacity = "0";
+
+        bttCloseMenuEdit.forEach(bttClose => {
+            bttClose.style.display = "block";
+        });
+
+        bttComandEdit.forEach(bttComand => {
+            bttComand.style.display = "flex";
+        });
+
+        menuEdit.forEach(menu => {
+            menu.style.width = "300px";
+            menu.style.boxShadow = "-5px 5px 15px 5px rgba(0, 0, 0, 0.094)";
+        });
+    });
+});
+
+bttCloseMenuEdit.forEach((button, i) => {
+    button.addEventListener("click", function() {
+        this.style.display = "none";
+
+        bttOpenMenuEdit.forEach(bttClose => {
+            bttClose.style.opacity = "1";
+        });
+
+        bttComandEdit.forEach(bttComand => {
+            bttComand.removeAttribute('style')
+        });
+
+        menuEdit.forEach(menu => {
+            menu.removeAttribute('style')
+        });
+    });
+});
+//botões da seção de usuários ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+var verifyAdmin = document.querySelectorAll(".verifyAdmin");
+var bttOpenUserInfo = document.querySelectorAll(".info_user");
+var divTornarAdminDelete = document.querySelectorAll(".container_turn_admin_delete");
+
+document.addEventListener("DOMContentLoaded", function() {
+    var verifyAdmin = document.querySelectorAll(".verifyAdmin");
+
+    verifyAdmin.forEach((verify) => {
+        if (verify.innerText.trim() === "true") {
+            var containerTurnAdminDelete = verify.parentElement.nextElementSibling.querySelector(".container_turn_admin_delete");
+            var newLink = document.querySelector(".turn_admin_link");
+
+            containerTurnAdminDelete.removeChild(newLink);
+        }
+    });
+});
+
+var bttOpenUserInfo = document.querySelectorAll(".info_user");
+
+bttOpenUserInfo.forEach((buttonOpenInfo, i) => {
+    buttonOpenInfo.addEventListener("click", function() {
+        var containerFormUsers = buttonOpenInfo.parentElement.nextElementSibling;
+        containerFormUsers.style.display = "flex";
+    });
+});
+
+document.addEventListener("click", function(event) {
+    if (event.target.classList.contains("bttCloseInfoUsers")) {
+        event.preventDefault();
+
+        var buttonCloseInfo = event.target;
+        var containerFormUsers = buttonCloseInfo.closest(".container_form_users");
+        containerFormUsers.style.display = "none";
+    }
+});
+
+var bttOpenDeletePoupUp = document.querySelectorAll(".button_open_poup_up_delete");
+var bttCloseDeletePoupUp = document.querySelectorAll(".close_poupUp_confirm");
+var abaPoupUpDelete = document.querySelectorAll(".confirm_delete");
+
+bttOpenDeletePoupUp.forEach((button, i) => {
+    button.addEventListener("click", function() {
+
+        var confirmDeleteSection = button.closest('.container_form_users').nextElementSibling;
+        confirmDeleteSection.style.display = "flex";
+    });
+});
+
+bttCloseDeletePoupUp.forEach((button, i) => {
+    button.addEventListener("click", function() {
+
+        abaPoupUpDelete.forEach(AbaPoupUp => {
+            AbaPoupUp.style.display = "none";
+        });
+    });
+});
+</script>

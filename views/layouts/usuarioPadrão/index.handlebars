@@ -1,0 +1,78 @@
+<header class="header_config">
+    <button class="button_nav_header">Orçamento</button>
+</header>
+<div style="margin-top: 30px; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    {{>msg_req}}
+</div>
+<main class="painelPad">
+    <section class="painel_orc_pad">
+        <section class="container_form_orc">
+            <input type="text" name="nomePaciente" placeholder="nome do paciente" class="input_form_orc">
+            <div class="container_list_system">
+                <span>adicionar ou remover procedimentos</span>
+                <button type="button" id="seeList"><img class="seeListImg" src="imagens/icons8-seta-para-recolher-48.png" alt="mostrar ou recolher itens"></button>
+            </div>
+            <ul id="listaItens">
+                {{#each procedimentos}}
+                    <form>
+                        <input type="checkbox" value="{{_id}}">
+                        <label for="item1" class="labelSelectProcedimentos">{{nomeProcedimento}}</label>
+                        <input type="hidden" name="aVista" value="{{aVista}}">
+                        <input type="hidden" name="parcelado" value="{{parcelado}}">
+                        <input type="number" name="quantidade" id="" value="1" class="quantBoxSelect">
+                        <select name="decisão" id="" class="inputSelect">
+                            <option value="true">certeza</option>
+                            <option value="false">dúvida</option>
+                        </select>
+                    </form>
+                {{else}}
+                    <li>ainda não existe nenhum procedimento</li>
+                {{/each}}
+                    <button id="atualizarSeleção" class="buttonUpdate">atualizar</button>
+            </ul>
+            <hr style="margin-top: 50px; margin-bottom: 50px; width: 90%;">
+            <h2 class="answer_present">Deseja dar algum brinde?</h2>
+            <form class="checagem_present">
+                <div>
+                    <input type="radio" name="opcao" id="yPresent" checked> <label for="yPresent">sim</label>
+                </div>
+                <div>
+                    <input type="radio" name="opcao" id="nPresent"> <label for="nPresent">nao</label>
+                </div>
+            </form>
+            <section class="section_select_present">
+                <div class="container_list_systemPresent">
+                    <span>selecione o presente</span>
+                    <button type="button" id="seeListPresent"><img class="seeListPresentImg" src="imagens/icons8-seta-para-recolher-48.png" alt="mostrar ou recolher itens"></button>
+                </div>
+                <ul id="listaItensPresent">
+                    {{#each procedimentos}}
+                        <form>
+                            <input type="checkbox" value="{{_id}}">
+                            <label for="item1" class="labelSelectProcedimentos">{{nomeProcedimento}}</label>
+                            <input type="hidden" name="aVista" value="{{aVista}}">
+                            <input type="hidden" name="parcelado" value="{{parcelado}}">
+                        </form>
+                    {{else}}
+                        <li>ainda não existe nenhum procedimento</li>
+                    {{/each}}
+
+                    <button id="atualizarSeleçãoPresent" class="buttonUpdate">atualizar</button>
+                </ul>
+            </section>
+            <hr style="margin: auto; margin-top: 50px; margin-bottom: 20px; width: 90%;">
+        </section>
+        <section class="confirme_valores">
+            <h2>confirme os valores</h2>
+            <div class="box_pre_pdf">
+                <div class="present_pre_see">
+                </div>
+                <div class="total_pre_see">
+                </div>
+                <div class="dobout_pre_see">
+                </div>
+            </div>
+            <button class="bttSendPDF">confirmar</button>
+        </section>
+    </section>
+</main>

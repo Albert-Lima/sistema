@@ -1,0 +1,1215 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+*{
+    margin: 0px;
+    padding: 0px;
+}
+:root{
+    --var-cor-bordas: #ACACAC;
+    --var-cor-buttonAuth: #0000a9;
+    --var-cor-blueSoft: #228BE6;
+    --var-cor-Success: #44bd5a;
+    --var-cor-Error: #FA5252;
+    --var-Font-Inter: "Inter", sans-serif;
+}
+body{
+    overflow-x: hidden;
+}
+.container_auth{
+    margin: auto;
+    height: 100vh;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.logo_box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    width: 400px;
+    font-family: var(--var-Font-Inter);
+    font-style: normal;
+    font-size: 30pt;
+    font-weight: 100;
+}
+.logo_box div{
+    height: 80%;
+    width: 80%;
+    background-image: url("/imagens/WhatsApp Image 2024-05-02 at 13.59.25.jpeg");
+    background-size: cover;
+}
+.form_auth{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    width: 400px;
+    gap: 10px;
+}
+.input_auth_data{
+    border: 1px solid var(--var-cor-bordas);
+    height: 40px;
+    padding-left: 30px;
+    width: calc(100% - 30px);
+    border-radius: 10px;
+    outline-color: var(--var-cor-blueSoft);
+    font-family: var(--var-Font-Inter);
+}
+.text_desc{
+    font-family: var(--var-Font-Inter);
+}
+.conatiner_check{
+    margin-top: 20px;
+    padding-left: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    width: calc(100% - 30px);
+    gap: 20px;
+}
+.button_auth{
+    border: none;
+    margin-top: 30px;
+    border-radius: 10px;
+    height: 40px;
+    width: 100%;
+    background-color: var(--var-cor-buttonAuth);
+    color: white;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.097);
+    transition: 0.3s;
+}
+.button_auth:hover{
+    box-shadow: 0px 10px 10px 5px rgba(0, 0, 0, 0.101)
+}
+.politic_privacity{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    width: 100%;
+    height: 20px;
+}
+.politic_privacity a{
+    color: black;
+    text-decoration: none;
+    font-family: var(--var-Font-Inter);
+    font-size: 10pt;
+    font-weight: 600;
+    margin-right: 10px;
+}
+.success_msg{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 80%;
+    margin: auto;
+    color: var(--var-cor-Success);
+    font-size: 11pt;
+    font-family: var(--var-Font-Inter);
+    font-weight: 600;
+}
+.error_msg{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 80%;
+    margin: auto;
+    color: var(--var-cor-Error);
+    font-size: 11pt;
+    font-family: var(--var-Font-Inter);
+    font-weight: 600;
+}
+.erros_auth_msg{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 10px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: -70px;
+    height: max-content;
+}
+.box_msg_erros{
+    height: 20px;
+    color: var(--var-cor-Error);
+    font-family: var(--var-Font-Inter);
+    font-size: 10pt;
+    font-weight: 100;
+}
+
+
+/*estilos de logado*/
+.header_config{
+    height: 60px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: start;
+    border-bottom:1px solid #000000;
+}
+.button_nav_header{
+    font-family: var(--var-Font-Inter);
+    font-size: 12pt;
+    font-weight: 600;
+    color: black;
+    background-color: transparent;
+    padding: 10px 30px;
+    border: none;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+}
+.selected_nav_header{
+    border-bottom: 2px solid black;
+}
+.painel{
+    width: 300%;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: center;
+}
+.painelPad{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: center;
+}
+.painel_orc_pad{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+.painel_adm{
+    width: calc(100% / 3);
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+.title_procedimentos{
+    margin-top: 80px;
+    margin-left: 15px;
+    height: 40px;
+    width: 90%;
+    font-family: var(--var-Font-Inter);
+    font-size: 15pt;
+    font-weight: 700;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.title_procedimentos > :first-child{
+    width: 60%;
+}
+.title_procedimentos > :nth-child(2){
+    width: 30%;
+}
+.container_procedimentos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 20px;
+    width: 90%;
+    height: max-content;
+    gap: 30px;
+}
+.box_procedimentos{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    height: 80px;
+    width: 100%;
+}
+.nome_procedimento{
+    font-family: var(--var-Font-Inter);
+    font-size: 12pt;
+    font-weight: 600;
+    color: rgb(62, 62, 62);
+    height: 100%;
+    width: 60%;
+    border: 1px solid var(--var-cor-bordas);
+    border-right: 1px solid transparent;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.conatainer_saved_values{
+    font-family: var(--var-Font-Inter);
+    font-size: 11pt;
+    font-weight: 600;
+    color: rgb(57, 57, 57);
+    height: 100%;
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--var-cor-bordas);
+    gap: 5px;
+}
+.conatainer_saved_values2{
+    font-family: var(--var-Font-Inter);
+    font-size: 11pt;
+    font-weight: 600;
+    color: rgb(57, 57, 57);
+    height: 100%;
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--var-cor-bordas);
+    border-left: 1px solid transparent;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    gap: 5px;
+}
+.btt_open_abaEdit{
+    background: none;
+    border: none;
+    height: 30px;
+    margin-left: 30px;
+    cursor: pointer;
+}
+.btt_open_abaEdit img{
+    height: 30px;
+}
+.container_btt_procedimentos{
+    margin: auto;
+    margin-top: 20px;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.button_open_procedimentos{
+    height: 30px;
+    width: 30px;
+    background: none;
+    border: none;
+    border-radius: 100%;
+    cursor: pointer;
+}
+.button_open_procedimentos img{
+    height: 30px;
+    width: 30px;
+}
+
+.poupup_addProcedimneto{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background-color: #00000056;
+    backdrop-filter: blur(5px);
+}
+.close_addProced{
+    font-family: var(--var-Font-Inter);
+    font-size: 11pt;
+    font-weight: 600;
+    color: black;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+.poupup_addProcedimneto form{
+    padding: 50px;
+    height: max-content;
+    width: 40vw;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+}
+.input_text_procedimento{
+    font-family: var(--var-Font-Inter);
+    font-size: 11pt;
+    font-weight: 600;
+    color: rgb(61, 61, 61);
+    height: 30px;
+    width: 70%;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid var(--var-cor-bordas);
+    outline: none;
+}
+.container_input_valores{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    gap: 80px;
+}
+.option_value{
+    font-family: var(--var-Font-Inter);
+    font-size: 11pt;
+    font-weight: 600;
+    margin-left: 15px;
+    color: #424242;
+}
+.input_value_proced{
+    margin-top: 10px;
+    margin-left: -5px;
+    text-align: end;
+    height: 30px;
+    width: 60px;
+    border: 1px solid var(--var-cor-bordas);
+    border-radius: 10px;
+    padding: 10px 20px;
+    outline: none;
+    font-family: var(--var-Font-Inter);
+    font-size: 11pt;
+    font-weight: 600;
+    margin-left: 5px;
+    color: #1d1d1d;
+}
+.btt_comand{
+    margin-top: 50px;
+    margin-bottom: -20px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 30px;
+    font-family: var(--var-Font-Inter);
+    font-size: 15pt;
+    font-weight: 100;
+    color: rgb(76, 76, 76);
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.btt_comand img{
+    height: 25px;
+}
+
+
+.poupup_editProcedimento{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #00000020;
+    backdrop-filter: blur(1px);
+}
+.close_EditProced{
+    font-family: var(--var-Font-Inter);
+    font-size: 12pt;
+    font-weight: 600;
+    color: black;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+.poupup_editProcedimento form{
+    background-color: white;
+    height: max-content;
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    padding: 30px;
+    border-radius: 10px;
+}
+.poupup_editProcedimento form header{
+    position: relative;
+    top: -30px;
+    height: 30px;
+    width: 60vw;
+    padding: 30px 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.poupup_editProcedimento form header span{
+    font-family: var(--var-Font-Inter);
+    color: black;
+    font-size: 12pt;
+    font-weight: 600;
+    width: 70px;
+    position: relative;
+    left: 0px;
+}
+.menu_edit{
+    position: absolute;
+    top: 0;
+    right: -30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    width: 0px;
+    transition: 0.2s;
+    border-bottom-left-radius: 10px;
+    background-color: white;
+}
+.btt_openMenuEdit{
+    position: absolute;
+    top: 30px;
+    right: 0px;
+    background: none;
+    border: none;
+    height: 30px;
+    cursor: pointer;
+}
+.btt_openMenuEdit img{
+    height: 30px;
+}
+.btt_closeMenuEdit{
+    display: none;
+    height: 30px;
+    width: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.btt_closeMenuEdit img{
+    height: 30px;
+    width: 30px;
+}
+.btt_comand_edit{
+    margin-top: 50px;
+    margin-bottom: -20px;
+    margin-left: 10px;
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 30px;
+    font-family: var(--var-Font-Inter);
+    font-size: 15pt;
+    font-weight: 600;
+    color: rgb(43, 43, 43);
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.btt_comand_edit img{
+    height: 25px;
+}
+
+.painel_users{
+    width: calc(100% / 3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+.title_global{
+    margin: auto;
+    margin-top: 80px;
+    height: 40px;
+    width: 90%;
+    font-family: var(--var-Font-Inter);
+    font-size: 15pt;
+    font-weight: 700;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+}
+.container_users{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 50px;
+    width: 90%;
+    height: max-content;
+    gap: 30px;
+}
+.box_user{
+    height: 60px;
+    width: 100%;
+    border: 1px solid var(--var-cor-bordas);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.box_user div{
+    margin-left: 45px;
+    font-family: var(--var-Font-Inter);
+    font-size: 12pt;
+    font-weight: 600;
+    color: rgb(55, 55, 55);
+}
+.box_user button{
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    margin-right: 30px;
+}
+.box_user button img{
+    height: 40px;
+    width: 40px;
+}
+.container_form_users{
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: -25px;
+    border: 1px solid var(--var-cor-bordas);
+    border-radius: 20px;
+}
+.container_form_users form{
+    width: 100%;
+}
+.form_users header{
+    width: 100%;
+    height: 30px;
+    border-bottom: 1px solid var(--var-cor-bordas);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.form_users header button{
+    background: none;
+    border: none;
+    font-family: var(--var-Font-Inter);
+    font-size: 12pt;
+    font-weight: 600;
+    color: black;
+    cursor: pointer;
+}
+.show_data_user{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    padding-left: 20px;
+    padding-top: 20px;
+    gap: 30px;
+}
+.box_show_data{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 5px;
+}
+.span_nome{
+    font-family: var(--var-Font-Inter);
+    font-size: 12pt;
+    font-weight: 600;
+    color: black;
+}
+.span_data{
+    font-family: var(--var-Font-Inter);
+    font-size: 12pt;
+    font-weight: 600;
+    color: rgb(81, 81, 81);
+}
+.button_open_poup_up_delete{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 30px;
+    font-family: var(--var-Font-Inter);
+    font-size: 12pt;
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.turn_admin_link{
+    font-family: var(--var-Font-Inter);
+    font-size: 12pt;
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.container_turn_admin_delete{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    margin-top: 40px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    gap: 100px;
+    width: calc(50% - 40px);
+}
+.button_open_poup_up_delete img{
+    height: 25px;
+}
+.confirm_delete{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.408);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.poupUp_confirm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: max-content;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 30vw;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid var(--var-cor-bordas);
+    gap: 10px;
+}
+.title_form_confirmDelete{
+    font-family: var(--var-Font-Inter);
+    font-size: 15pt;
+    color: black;
+    font-weight: 700;
+}
+.desc_form_confirmDelete{
+    font-family: var(--var-Font-Inter);
+    font-size: 11pt;
+    color: rgb(68, 68, 68);
+    font-weight: 600;
+}
+.poupUp_confirm div{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 20vw;
+}
+.close_poupUp_confirm{
+    font-size: 12pt;
+    font-family: var(--var-Font-Inter);
+    font-weight: 600;
+    color: black;
+    border: none;
+    border-bottom: 2px solid black;
+    padding-bottom: 2px;
+    background: none;
+    cursor: pointer;
+}
+.confirm_delete_button{
+    background-color: var(--var-cor-Error);
+    color: white;
+    font-size: 12pt;
+    font-family: var(--var-Font-Inter);
+    font-weight: 600;
+    border: none;
+    padding: 8px 20px;
+    cursor: pointer;
+}
+.redirect_to_cadastro{
+    cursor: pointer;
+}
+.redirect_to_cadastro img{
+    height: 30px;
+    width: 30px;
+}
+
+.painel_orc{
+    width: calc(100% / 3);
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+.container_form_orc{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    height: max-content;
+    width: 90%;
+    margin: auto;
+    margin-top: 80px;
+}
+.input_form_orc{
+    height: 50px;
+    width: 80%;
+    padding-left: 20px;
+    font-family: var(--var-Font-Inter);
+    font-weight: 600;
+    font-size: 12pt;
+    border: 1px solid var(--var-cor-bordas);
+    border-radius: 10px;
+    color: #808080;
+}
+.container_list_system{
+    margin-top: 30px;
+    height: 50px;
+    width: 80%;
+    padding-left: 20px;
+    font-family: var(--var-Font-Inter);
+    font-weight: 600;
+    font-size: 12pt;
+    border: 1px solid var(--var-cor-bordas);
+    border-radius: 10px;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+#seeList{
+    height: 100%;
+    width: 50px;
+    background: none;
+    cursor: pointer;
+    border: none;
+    border-left: 1px solid var(--var-cor-bordas);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+#seeList img{
+    transform: rotate(180deg);
+}
+.section_select_present{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-self: center;
+    gap: 5px;
+}
+#listaItens{
+    list-style-type: none;
+    display: none;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    border: 1px solid var(--var-cor-bordas);
+    border-radius: 5px;
+    padding-left: 20px;
+    padding-top: 00px;
+    padding-bottom: 20px;
+    margin-top: 5px;
+    width: 80%;
+    max-height: 300px;
+    overflow-y: scroll;
+    gap: 10px;
+}
+#listaItens form{
+    margin-top: 20px;
+    display:  flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+}
+.labelSelectProcedimentos{
+    font-family: var(--var-Font-Inter);
+    font-size: 11pt;
+    font-weight: 600;
+    color: rgb(67, 67, 67);
+}
+.quantBoxSelect{
+    width: 40px;
+    height: 30px;
+    text-align: center;
+    background-color: rgb(226, 226, 226);
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-family: var(--var-Font-Inter);
+    font-size: 10pt;
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+}
+.inputSelect{
+    width: 80px;
+    height: 30px;
+    text-align: center;
+    background-color: rgb(225, 225, 225);
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-family: var(--var-Font-Inter);
+    font-size: 10pt;
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+}
+.buttonUpdate{
+    background-color: var(--var-cor-buttonAuth);
+    color: white;
+    font-family: var(--var-Font-Inter);
+    font-size: 12pt;
+    padding: 5px 10px;
+    border: none;
+    margin-top: 30px;
+    cursor: pointer;
+}
+#listaItensPresent{
+    list-style-type: none;
+    display: none;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    border: 1px solid var(--var-cor-bordas);
+    border-radius: 5px;
+    padding-left: 20px;
+    padding-top: 00px;
+    padding-bottom: 20px;
+    margin: auto;
+    margin-top: 5px;
+    width: 90%;
+    max-height: 300px;
+    overflow-y: scroll;
+    gap: 10px;
+}
+#listaItensPresent form{
+    margin-top: 20px;
+    display:  flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+}
+.answer_present{
+    font-family: var(--var-Font-Inter);
+    font-weight: 600;
+    font-size: 15pt;
+    color: black;
+    margin-left: 10px;
+}
+.checagem_present{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 50px;
+    padding-top: 20px;
+}
+.checagem_present div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    gap: 5px;
+}
+#yPresent, #nPresent{
+    cursor: pointer;
+}
+.container_list_systemPresent{
+    margin: auto;
+    margin-top: 30px;
+    height: 50px;
+    width: 90%;
+    padding-left: 20px;
+    font-family: var(--var-Font-Inter);
+    font-weight: 600;
+    font-size: 12pt;
+    border: 1px solid var(--var-cor-bordas);
+    border-radius: 10px;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.confirme_valores{
+    margin: auto;
+    height: max-content;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 100px;
+}
+.confirme_valores h2{
+    font-family: var(--var-Font-Inter);
+    font-size: 15pt;
+    font-weight: 600;
+    color: black;
+}
+.box_pre_pdf{
+    margin-top: 50px;
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+.present_pre_see div, .total_pre_see div, .dobout_pre_see div{
+    font-family: var(--var-Font-Inter);
+    font-size: 11pt;
+    font-weight: 600;
+    color: rgb(66, 66, 66);
+    text-indent: center;
+}
+.bttSendPDF{
+    background-color: var(--var-cor-buttonAuth);
+    color: white;
+    font-family: var(--var-Font-Inter);
+    font-size: 12pt;
+    padding: 8px 50px;
+    border: none;
+    margin-top: 50px;
+    cursor: pointer;
+}
+#seeListPresent{
+    height: 100%;
+    width: 50px;
+    background: none;
+    cursor: pointer;
+    border: none;
+    border-left: 1px solid var(--var-cor-bordas);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.seeListPresentImg{
+    transform: rotate(180deg);
+}
+
+/*estilização página de impressão pdf ----------------------------------------------------------------------------------------------------------------------------------------------------------*/
+.pdf{
+    margin: auto;
+    position: relative;
+    width: 210mm;
+    height: 297mm;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding-bottom: 150px;
+}
+.img_logo_pdf{
+    background-image: url('/imagens/WhatsApp Image 2024-05-02 at 13.59.25.jpeg');
+    background-size: cover;
+    background-position: center center;
+    width: 210mm;
+    height: 80mm;
+}
+.infoPacient{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    height: 50px;
+    width: 90%;
+    font-family: var(--var-Font-Inter);
+    font-size: 17pt;
+    font-weight: 600;
+    color: black;
+}
+.caixa_procedimentos{
+    margin-top: 20px;
+    width: 90%;
+}
+.caixa_colunas{
+    height: max-content;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.caixa_proced{
+    height: 60px;
+    width: 60%;
+    border: 2px solid black;
+    font-family: var(--var-Font-Inter);
+    font-size: 12pt;
+    font-weight: 600;
+    color: rgb(29, 29, 29);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1px;
+}
+.caixa_valor{
+    height: 60px;
+    width: 40%;
+    border: 2px solid black;
+    font-family: var(--var-Font-Inter);
+    font-size: 12pt;
+    font-weight: 600;
+    color: rgb(29, 29, 29);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1px;
+}
+.section_data_orc{
+    width: 100%;
+    margin-top: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2px;
+}
+.fatherprocedDiv{
+    height: max-content;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2px;
+}
+.sonProcedimento{
+    height: 60px;
+    width: 60%;
+    border: 2px solid black;
+    font-family: var(--var-Font-Inter);
+    font-size: 11pt;
+    font-weight: 400;
+    color: rgb(71, 71, 71);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.sonValor{
+    height: 60px;
+    width: 40%;
+    border: 2px solid black;
+    font-family: var(--var-Font-Inter);
+    font-size: 10pt;
+    font-weight: 400;
+    color: rgb(71, 71, 71);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.section_present{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--var-Font-Inter);
+    font-size: 11pt;
+    font-weight: 600;
+    color: rgb(40, 40, 40);
+}
+.section_total_some{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--var-Font-Inter);
+    font-size: 11pt;
+    font-weight: 600;
+    color: rgb(40, 40, 40);
+}
+.section_total_dobout{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--var-Font-Inter);
+    font-size: 11pt;
+    font-weight: 600;
+    color: rgb(40, 40, 40);
+}
+.assinatura{
+    position: absolute;
+    bottom: 30px;
+    right: 0;
+    background-image: url("/imagens/WhatsApp Image 2024-05-05 at 22.02.03.jpeg");
+    background-size: cover;
+    height: 130px;
+    width: 300px;
+}
+.data{
+    position: absolute;
+    bottom: 80px;
+    left: 50px;
+}
+.buttonsPDF{
+    width: 100%;
+    height: max-content;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#bttDownloadPDF{
+    background-color:rgb(255, 45, 45);
+    color: white;
+    font-family: var(--var-Font-Inter);
+    font-size: 11pt;
+    border: none;
+    cursor: pointer;
+    padding: 8px 20px;
+}
+#bttDownloadPDF:hover{
+    background-color:rgb(198, 15, 15);
+}

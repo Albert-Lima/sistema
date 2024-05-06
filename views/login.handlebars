@@ -1,0 +1,21 @@
+<section class="container_auth">
+    <section class="logo_box">
+        <div></div>
+    </section>
+    <section>
+        {{#if error}}
+            <div>
+                {{error}}
+            </div>
+        {{else}}
+        {{/if}}
+    </section>
+    <form action="/login" method="post" class="form_auth">
+        <input type="email" placeholder="Email" name="email" class="input_auth_data">
+        <input type="password" placeholder="Senha" name="senha" class="input_auth_data">
+        <button type="submit" class="button_auth">login</button>
+        <div class="politic_privacity">
+            <a href="#política">política de privacidade</a>
+        </div>
+    </form>
+</section>

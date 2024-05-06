@@ -1,0 +1,25 @@
+<section class="container_auth">
+    <section class="logo_box">
+        <div></div>
+    </section>
+    <section class="erros_auth_msg">
+        {{#each erros}}
+            <div class="box_msg_erros">{{texto}}</div>
+        {{else}}
+        {{/each}}
+    </section>
+    <form action="/cadastro" method="post" class="form_auth">
+        <input type="text" placeholder="Nome" name="nome" class="input_auth_data">
+        <input type="email" placeholder="Email" name="email" class="input_auth_data">
+        <input type="password" placeholder="Senha" name="senha" class="input_auth_data">
+        <input type="password" placeholder="Confirme a senha" name="senhaConfirm" class="input_auth_data">
+        <div class="conatiner_check">
+            <span class="text_desc">Nova conta adm?</span>
+            <input type="checkbox" name="eAdmin" value="on">
+        </div>
+        <button type="submit" class="button_auth">cadastrar</button>
+        <div class="politic_privacity">
+            <a href="/">login</a>
+        </div>
+    </form>
+</section>

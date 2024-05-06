@@ -1,0 +1,147 @@
+<section class="pdf_container">
+    <section class="pdf" style="">
+        <div class="img_logo_pdf">
+        </div>
+        <div class="infoPacient">
+            <p>Paciente: {{dados.nomePaciente}}</p>
+        </div>
+        <section class="caixa_procedimentos">
+            <div class="caixa_colunas">
+                <div class="caixa_proced">PROCEDIMENTOS</div>
+                <div class="caixa_valor">VALOR</div>
+            </div>
+            {{#each dados.procedimentos}}
+            <section class="section_data_orc">
+            </section>
+            {{/each}}
+            
+        </section>
+        <section class="assinatura">
+        </section>
+        <section class="section_present">
+        </section>
+        <section class="section_total_some">
+        </section>
+        <section class="section_total_dobout">
+        </section>
+        <section class="data"></section>
+    </section>
+</section>    
+<section class="buttonsPDF">
+    <button id="bttDownloadPDF">Gerar PDF</button>
+</section>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Obter o elemento onde os procedimentos serão inseridos
+    var procedimentosSection = document.querySelector('.section_data_orc');
+    // Obter a data atual
+        const currentDate = new Date();
+        const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
+
+        // Criar um elemento para a data
+        const dataSection = document.querySelector('.data');
+        dataSection.textContent = formattedDate;
+
+    // Iterar sobre cada procedimento recebido
+    {{#each dados.procedimentos}}
+        var fatherprocedDiv = document.createElement("div")
+        fatherprocedDiv.classList.add("fatherprocedDiv")
+        var procedimentoDiv = document.createElement('div');
+        procedimentoDiv.classList.add("sonProcedimento")
+        procedimentoDiv.textContent = "{{quantidade}} {{nome}}"
+        var valorDiv = document.createElement('div');
+        valorDiv.classList.add("sonValor")
+        var parcelado = parseFloat('{{parcelado}}');
+        var aVista = parseFloat('{{aVista}}');
+        var quantidade = parseInt('{{quantidade}}');
+        valorDiv.textContent = 'R$' + (parcelado * quantidade).toFixed(2) + ' em até 12x ou R$' + (aVista * quantidade).toFixed(2) + ' à vista pix/dinheiro';
+        procedimentosSection.appendChild(fatherprocedDiv)
+        fatherprocedDiv.appendChild(procedimentoDiv)
+        fatherprocedDiv.appendChild(valorDiv)
+    {{/each}}
+
+    // Obter o elemento onde os procedimentos presentes serão inseridos
+    var procedimentosPresentSection = document.querySelector('.section_present');
+
+    // Limpar o conteúdo existente
+    procedimentosPresentSection.innerHTML = '';
+
+    var somaAVistaDiv = document.createElement('div');
+    // Calcular a soma dos valores aVista de todos os procedimentosPresent
+    var somaAVista = 0;
+    {{#each dados.procedimentosPresent}}
+        var aVistaPresent = parseFloat('{{aVista}}');
+        somaAVista += aVistaPresent;
+    {{/each}}
+    somaAVistaDiv.textContent = 'R$' + somaAVista.toFixed(2);
+    procedimentosPresentSection.innerHTML += '<div><p>Dr/Dra está dando de presente '+somaAVistaDiv.textContent+' em procedimentos <br> &#40;{{#each dados.procedimentosPresent}}&nbsp;{{nome}}&nbsp;{{/each}}&#41;</p></div>';
+
+    // Calcular soma total dos valores
+    var parceladoSomaTotal = 0;
+    var aVistaSomaTotal = 0;
+    {{#each dados.procedimentos}}
+        var parceladoProcedimento = parseFloat('{{parcelado}}');
+        var aVistaProcedimento = parseFloat('{{aVista}}');
+        var quantidadeProcedimento = parseInt('{{quantidade}}');
+        parceladoSomaTotal += parceladoProcedimento * quantidadeProcedimento;
+        aVistaSomaTotal += aVistaProcedimento * quantidadeProcedimento;
+    {{/each}}
+
+    // Adicionar investimento total à seção correspondente
+    var totalSomeSection = document.querySelector('.section_total_some');
+    var totalSomeDiv = document.createElement('div');
+    totalSomeDiv.innerHTML = '<p>Investimento total: R$' + parceladoSomaTotal.toFixed(2) + ' em até 12x ou R$' + aVistaSomaTotal.toFixed(2) + ' à vista</p>';
+    totalSomeSection.appendChild(totalSomeDiv);
+
+    // Filtrar os procedimentos com decisao igual a false
+    var parceladoSomaTotalDuvida = 0;
+    var aVistaSomaTotalDuvida = 0;
+    {{#each procedimentosDecisaoFalse}}
+        var parceladoProcedimentoDuvida = parseFloat('{{parcelado}}');
+        var aVistaProcedimentoDuvida = parseFloat('{{aVista}}');
+        var quantidadeProcedimentoDuvida = parseInt('{{quantidade}}');
+        parceladoSomaTotalDuvida += parceladoProcedimentoDuvida * quantidadeProcedimentoDuvida;
+        aVistaSomaTotalDuvida += aVistaProcedimentoDuvida * quantidadeProcedimentoDuvida;
+    {{/each}}
+
+    // Subtrair o total dos procedimentos com decisao igual a false do total original
+    var totalSemDuvida = parceladoSomaTotal - parceladoSomaTotalDuvida;
+    var totalSemAVista = aVistaSomaTotal - aVistaSomaTotalDuvida
+
+    // Adicionar investimento sem procedimentos em dúvida à seção correspondente
+    var totalDoboutSection = document.querySelector('.section_total_dobout');
+    var totalDoboutDiv = document.createElement('div');
+    totalDoboutDiv.innerHTML = '<p>Investimento sem {{#each procedimentosDecisaoFalse}}{{nome}} {{/each}}: R$' + totalSemDuvida.toFixed(2) + ' em até 12x ou R$' + totalSemAVista.toFixed(2) + ' à vista</p>';
+    totalDoboutSection.appendChild(totalDoboutDiv);
+});
+
+    document.getElementById('bttDownloadPDF').addEventListener('click', async () => {
+      const pdfContent = document.querySelector('.pdf').innerHTML;
+      
+
+      // Enviar o conteúdo HTML para o servidor (aqui você pode usar o método de sua preferência, como fetch, XMLHttpRequest, etc.)
+      const response = await fetch('/montarpdf', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ content: pdfContent })
+      });
+      if (response.ok) {
+        const currentDate = new Date();
+        const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
+
+        // Adicionar a data ao conteúdo HTML
+        const pdfContent = document.querySelector('.pdf').innerHTML;
+        const pdfWithDate = pdfContent.replace('<section class="data"></section>', `<section class="data">${formattedDate}</section>`);
+        window.location.href = '/printpdf';
+      } else {
+        console.log("erro ao redirecionar página")
+        // Tratar erro de resposta, se necessário
+      }
+
+    });
+</script>

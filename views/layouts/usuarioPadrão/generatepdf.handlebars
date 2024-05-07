@@ -35,6 +35,22 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
+    function formatMoney(value) {
+        // Converter o valor para string
+        value = value.toString();
+        
+        // Separar parte inteira da parte decimal
+        var parts = value.split('.');
+        
+        // Formatar a parte inteira
+        var integerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        
+        // Formatar a parte decimal com duas casas decimais
+        var decimalPart = parts.length > 1 ? ',' + parts[1].padEnd(2, '0') : ',00';
+        
+        // Retornar o valor formatado
+        return integerPart + decimalPart;
+    }
     // Obter o elemento onde os procedimentos serão inseridos
     var procedimentosSection = document.querySelector('.section_data_orc');
     // Obter a data atual
@@ -51,13 +67,17 @@ document.addEventListener("DOMContentLoaded", function() {
         fatherprocedDiv.classList.add("fatherprocedDiv")
         var procedimentoDiv = document.createElement('div');
         procedimentoDiv.classList.add("sonProcedimento")
-        procedimentoDiv.textContent = "{{quantidade}} {{nome}}"
+        var quantidade = parseInt('{{quantidade}}');
+        if(quantidade === 1){
+            procedimentoDiv.textContent = "{{nome}}"
+        }else{
+            procedimentoDiv.textContent = "{{quantidade}} {{nome}}"
+        }
         var valorDiv = document.createElement('div');
         valorDiv.classList.add("sonValor")
         var parcelado = parseFloat('{{parcelado}}');
         var aVista = parseFloat('{{aVista}}');
-        var quantidade = parseInt('{{quantidade}}');
-        valorDiv.textContent = 'R$' + (parcelado * quantidade).toFixed(2) + ' em até 12x ou R$' + (aVista * quantidade).toFixed(2) + ' à vista pix/dinheiro';
+        valorDiv.textContent = 'R$' + formatMoney(parcelado * quantidade) + ' em até 12x ou R$' + formatMoney(aVista * quantidade) + ' à vista pix/dinheiro';
         procedimentosSection.appendChild(fatherprocedDiv)
         fatherprocedDiv.appendChild(procedimentoDiv)
         fatherprocedDiv.appendChild(valorDiv)
@@ -77,7 +97,11 @@ document.addEventListener("DOMContentLoaded", function() {
         somaAVista += aVistaPresent;
     {{/each}}
     somaAVistaDiv.textContent = 'R$' + somaAVista.toFixed(2);
-    procedimentosPresentSection.innerHTML += '<div><p>Dr/Dra está dando de presente '+somaAVistaDiv.textContent+' em procedimentos <br> &#40;{{#each dados.procedimentosPresent}}&nbsp;{{nome}}&nbsp;{{/each}}&#41;</p></div>';
+    {{#if dados.procedimentosPresent}}
+        procedimentosPresentSection.innerHTML += '<div><p>Instituto Tigre está dando de presente '+ formatMoney(somaAVistaDiv.textContent)+' em procedimentos <br> &#40;{{#each dados.procedimentosPresent}}&nbsp;{{nome}}&nbsp;{{/each}}&#41;</p></div>';
+    {{else}}
+        procedimentosPresentSection.innerHTML += ''
+    {{/if}}
 
     // Calcular soma total dos valores
     var parceladoSomaTotal = 0;
@@ -93,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Adicionar investimento total à seção correspondente
     var totalSomeSection = document.querySelector('.section_total_some');
     var totalSomeDiv = document.createElement('div');
-    totalSomeDiv.innerHTML = '<p>Investimento total: R$' + parceladoSomaTotal.toFixed(2) + ' em até 12x ou R$' + aVistaSomaTotal.toFixed(2) + ' à vista</p>';
+    totalSomeDiv.innerHTML = '<p>Investimento total: R$' + formatMoney(parceladoSomaTotal) + ' em até 12x ou R$' + formatMoney(aVistaSomaTotal) + ' à vista</p>';
     totalSomeSection.appendChild(totalSomeDiv);
 
     // Filtrar os procedimentos com decisao igual a false
@@ -106,7 +130,6 @@ document.addEventListener("DOMContentLoaded", function() {
         parceladoSomaTotalDuvida += parceladoProcedimentoDuvida * quantidadeProcedimentoDuvida;
         aVistaSomaTotalDuvida += aVistaProcedimentoDuvida * quantidadeProcedimentoDuvida;
     {{/each}}
-
     // Subtrair o total dos procedimentos com decisao igual a false do total original
     var totalSemDuvida = parceladoSomaTotal - parceladoSomaTotalDuvida;
     var totalSemAVista = aVistaSomaTotal - aVistaSomaTotalDuvida
@@ -114,7 +137,11 @@ document.addEventListener("DOMContentLoaded", function() {
     // Adicionar investimento sem procedimentos em dúvida à seção correspondente
     var totalDoboutSection = document.querySelector('.section_total_dobout');
     var totalDoboutDiv = document.createElement('div');
-    totalDoboutDiv.innerHTML = '<p>Investimento sem {{#each procedimentosDecisaoFalse}}{{nome}} {{/each}}: R$' + totalSemDuvida.toFixed(2) + ' em até 12x ou R$' + totalSemAVista.toFixed(2) + ' à vista</p>';
+    if(quantidadeProcedimentoDuvida === 0){
+        totalDoboutDiv.innerHTML = ''
+    }else{
+        totalDoboutDiv.innerHTML = '<p>Investimento sem {{#each procedimentosDecisaoFalse}}{{nome}} {{/each}}: R$' + formatMoney(totalSemDuvida) + ' em até 12x ou R$' + formatMoney(totalSemAVista) + ' à vista</p>'
+    };
     totalDoboutSection.appendChild(totalDoboutDiv);
 });
 

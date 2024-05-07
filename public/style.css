@@ -1037,7 +1037,6 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    padding-bottom: 150px;
 }
 .img_logo_pdf{
     background-image: url('/imagens/WhatsApp Image 2024-05-02 at 13.59.25.jpeg');
@@ -1060,6 +1059,7 @@ body{
     color: black;
 }
 .caixa_procedimentos{
+    height: 146mm;
     margin-top: 20px;
     width: 90%;
 }
@@ -1177,19 +1177,26 @@ body{
     font-weight: 600;
     color: rgb(40, 40, 40);
 }
-.assinatura{
-    position: absolute;
-    bottom: 30px;
-    right: 0;
-    background-image: url("/imagens/WhatsApp Image 2024-05-05 at 22.02.03.jpeg");
-    background-size: cover;
-    height: 130px;
-    width: 300px;
+.footerPDF{
+    height: 34mm;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 .data{
-    position: absolute;
-    bottom: 80px;
-    left: 50px;
+    font-family: var(--var-Font-Inter);
+    font-size: 10pt;
+    font-weight: 600;
+    color: black;
+}
+.assinatura{
+    background-image: url("/imagens/WhatsApp Image 2024-05-05 at 22.02.03.jpeg");
+    background-size: cover;
+    height: 100%;
+    width: 300px;
 }
 .buttonsPDF{
     width: 100%;

@@ -112,16 +112,16 @@ const app = express()
                                 --var-cor-Error: #FA5252;
                                 --var-Font-Inter: "Inter", sans-serif;
                             }
-                            .body{
-                                width: 100vw;
-                                height: 141vw;
+                            .body{!important
+                                width: 210mm;
+                                height: 297mm;
                                 overflow: scroll;
                             }
                             .pdf{
                                 margin: auto;
                                 position: relative;
-                                width: 100vw;
-                                height: 141vw;
+                                width: 210mm;
+                                height: 297mm;
                                 display: flex;
                                 flex-direction: column;
                                 align-items: center;
@@ -153,6 +153,7 @@ const app = express()
                                 margin: auto;
                                 margin-top: 20px;
                                 width: 90%;
+                                height: calc(146mm - 34mm);
                             }
                             .caixa_colunas{
                                 height: max-content;
@@ -268,26 +269,32 @@ const app = express()
                                 font-weight: 600;
                                 color: rgb(40, 40, 40);
                             }
+                            .footerPDF{
+                                height: 34mm;
+                                width: 90%;
+                                margin: auto;
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+                                justify-content: space-between;
+                            }
                             .assinatura{
-                                position: absolute;
-                                bottom: 30px;
-                                right: 0px;
                                 background-image: url('/imagens/WhatsApp Image 2024-05-05 at 22.02.03.jpeg');
                                 background-size: cover;
-                                height: 150px;
+                                height: 100%;
                                 width: 300px;
                             }
                             .data{
-                                position: absolute;
-                                bottom: 80px;
-                                left: 50px;
+                                font-family: var(--var-Font-Inter);
+                                font-size: 10pt;
+                                font-weight: 600;
+                                color: black;
                             }
                             </style>
                             <title>Print PDF</title>
                         </head>
                         <body>
                             ${htmlContent}
-                            
                             <script>
                                 // Função para imprimir a página assim que estiver totalmente carregada
                                 window.onload = function() {
